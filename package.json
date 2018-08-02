@@ -1,0 +1,17 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "Simple blog made on nodejs expressjs & mongodb",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "author": "Andy G",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.2.6",
+    "nodemon": "^1.18.3",
+    "pug": "^2.0.3"
+  }
+}
