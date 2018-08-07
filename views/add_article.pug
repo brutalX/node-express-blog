@@ -2,13 +2,13 @@ extends layout
 
 block content
   form(method='post', action='/articles/add')
-  .container
-    .row.text-center(style="padding-top:50px")
-      .col-md-4.offset-md-4
-        .form-group
-          input.form-control(type='text', placeholder='Title')
-        .form-group
-          input.form-control(type='text', placeholder='Author')
-        .form-group
-          textarea.form-control(rows='3', placeholder='Body')
-        button.btn.btn-primary(type='submit') Submit
+    .container
+      .row.text-center(style="padding-top:50px")
+        .col-md-4.offset-md-4
+          .form-group
+            input.form-control(type='text', name='title' ,placeholder='Title')
+          .form-group
+            input.form-control(type='text', name='author' ,placeholder='Author')
+          .form-group
+            textarea.form-control(rows='3', name='body' placeholder='Body')
+          input.btn.btn-primary(type='submit', value="Submit")

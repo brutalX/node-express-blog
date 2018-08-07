@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
-
-let articleSchema = mongoose.Schema({
+let Schema = mongoose.Schema;
+let articleSchema = new Schema({
   title:{
     type: String,
     required: true
@@ -16,4 +16,4 @@ let articleSchema = mongoose.Schema({
 
 });
 
-let Article = module.exports = mongoose.model('Article', articleSchema);
+module.exports = mongoose.model('articles', articleSchema);
