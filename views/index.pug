@@ -2,15 +2,15 @@ extends layout
 
 block content
   .container
-    .row(style='margin:5px;')
+    .row.space
       .col-md-8.offset-md-2
         .list-group
         each article, i in articles
-          a.list-group-item.list-group-item-action.flex-column.align-items-start(href='#')(style='padding:10px;')
+          a.list-group-item.list-group-item-action.flex-column.align-items-start.pad(href='/article/'+article._id)
             .d-flex.w-100.justify-content-between
               h2.mb-1= article.title
-              small 3 days ago
             p.mb-1= article.author
+            small 3 days ago
 
 
       

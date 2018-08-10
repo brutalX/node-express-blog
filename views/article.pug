@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  .container
+    .row.space
+      .col-md-8.offset-md-2
+        h1= article.title
+        h5 Written by #{article.author}
+        p= article.body
+        hr
+        a.btn.btn-success(href='/article/edit/'+article._id) Edit
+        a.btn.btn-danger.space.btnDel(href='#',data-id=article._id) Delete
+        hr

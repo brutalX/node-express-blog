@@ -8,4 +8,6 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
         | Home 
         span.sr-only (current)
       a.nav-item.nav-link(href='/articles/add') Add Article
-      a.nav-item.nav-link(href='#') Pricing
+      form.form-inline
+        input.form-control.mr-sm-2(type='search', placeholder='Search', aria-label='Search')
+        button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search

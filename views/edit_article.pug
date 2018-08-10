@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  form(method='post', action='/article/update/'+article._id)
+    .container
+      .row.text-center(style="padding-top:50px")
+        .col-md-4.offset-md-4
+          .form-group
+            input.form-control(type='text', name='title' ,placeholder='Title', value=article.title)
+          .form-group
+            input.form-control(type='text', name='author' ,placeholder='Author', value=article.author)
+          .form-group
+            textarea.form-control(name='body', rows='6', placeholder='Author')=article.body
+          input.btn.btn-primary(type='submit', value='Update')   

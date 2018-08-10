@@ -14,7 +14,7 @@ db.on('error', function(){
   console.log(err); 
 });
 
-let Article = require('./modals/article');
+let Article = require('./models/article');
 
 const app = express();
 
@@ -27,6 +27,7 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/css/'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/js/'));
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.set('views' , path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -48,14 +49,44 @@ app.get('/articles/add', function(req, res){
     title: 'myBlog'
   });
 });
+app.get('/article/:id', function(req, res){
+  Article.findById(req.params.id, function(err, article) {
+    res.render('article', {
+      title: 'myBlog',
+      article:article
+    });
+  });
+});
+app.get('/article/edit/:id', function(req, res){
+  Article.findById(req.params.id, function(err, article) {
+    res.render('edit_article', {
+      title: 'myBlog',
+      article:article
+    });
+  });
+});
+app.delete('/article/:id' ,function(req, res){
+ 
+    let query = {_id:req.params.id}
+    
+    Article.remove(query, function(err){
+      if(err){
+        console.log(err);
+      } 
+        res.send('Success');
+     
+    });
+})
 
-app.post('/articles/add', function(req, res){
-  articlemod = new Article();
-  articlemod.title = req.body.title;
-  articlemod.author = req.body.author;
-  articlemod.body = req.body.body;
+app.post('/article/update/:id', function(req, res){
+  let articleObj = {};
+  articleObj.title = req.body.title;
+  articleObj.author = req.body.author;
+  articleObj.body = req.body.body;
 
-  articlemod.save(function(err){
+  let query = {_id:req.params.id}
+
+  Article.update(query, articleObj, function(err){
     if(err){
       console.log(err);
       return;
@@ -64,7 +95,23 @@ app.post('/articles/add', function(req, res){
 
     }
   });
-  console.log(articlemod.title + ' ' + articlemod.author + ' ' + articlemod.body);
+});
+app.post('/articles/add', function(req, res){
+  articleObj = new Article();
+  articleObj.title = req.body.title;
+  articleObj.author = req.body.author;
+  articleObj.body = req.body.body;
+
+  articleObj.save(function(err){
+    if(err){
+      console.log(err);
+      return;
+    }else{
+      res.redirect('/');
+
+    }
+  });
+  console.log(articleObj.title + ' ' + articleObj.author + ' ' + articleObj.body);
   return;
 });
 app.listen(3000, function(){
