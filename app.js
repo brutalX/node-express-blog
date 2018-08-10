@@ -26,7 +26,7 @@ app.use(bodyParser.json())
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/css/'));
-
+app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/js/'));
 app.set('views' , path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -45,7 +45,7 @@ app.get('/' , function(req, res){
 
 app.get('/articles/add', function(req, res){
   res.render('add_article', {
-    title: 'Add Article'
+    title: 'myBlog'
   });
 });
 

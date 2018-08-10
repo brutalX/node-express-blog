@@ -1,14 +1,16 @@
 extends layout
 
 block content
-  h1 #{title}
   .container
-    .row
-      each article, i in articles
-        .col-md-4
-          .card.text-white.bg-info.mb-3(style='max-width: 25rem;')
-              .card-header
-                h3= article.title
-              .card-body
-                h5.card-title= article.author
-                p.card-text= article.body
+    .row(style='margin:5px;')
+      .col-md-8.offset-md-2
+        .list-group
+        each article, i in articles
+          a.list-group-item.list-group-item-action.flex-column.align-items-start(href='#')(style='padding:10px;')
+            .d-flex.w-100.justify-content-between
+              h2.mb-1= article.title
+              small 3 days ago
+            p.mb-1= article.author
+
+
+      
